@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mini-FAS</string>
+    <string name="app_name">fas-app</string>
 
     <string name="real_face">Real Face</string>
     <string name="fake_face">Fake Face</string>

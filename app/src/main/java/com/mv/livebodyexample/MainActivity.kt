@@ -24,13 +24,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.mv.livebodyexample.databinding.ActivityMainBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
 import java.io.IOException
+import java.util.concurrent.Executors
+import androidx.lifecycle.lifecycleScope
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
-@ObsoleteCoroutinesApi
 class MainActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDialogListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDi
     private var offsetX: Float = 0F
     private var offsetY: Float = 0F
 
-    private val detectionContext = newSingleThreadContext("detection")
+    private val detectionContext = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var working: Boolean = false
 
     private lateinit var scaleAnimator: ObjectAnimator
@@ -81,21 +83,10 @@ class MainActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDi
     }
 
     private fun hideSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            window.insetsController?.let {
-                it.hide(android.view.WindowInsets.Type.statusBars() or android.view.WindowInsets.Type.navigationBars())
-                it.systemBarsBehavior = android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
-        }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
     private fun hasPermissions(): Boolean {
@@ -213,7 +204,7 @@ class MainActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDi
                 override fun onPreviewFrame(data: ByteArray, camera: Camera) {
                     if (enginePrepared) {
                         if (!working) {
-                            GlobalScope.launch(detectionContext) {
+                            lifecycleScope.launch(detectionContext) {
                                 working = true
                                 val result = engineWrapper.detect(
                                     data,

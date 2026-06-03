@@ -41,10 +41,10 @@ class CoverView: View {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        val layerId = canvas?.saveLayer(0F, 0F, width.toFloat(), height.toFloat(), null, Canvas.ALL_SAVE_FLAG)
+    override fun onDraw(canvas: Canvas) {
+        val layerId = canvas.saveLayer(0F, 0F, width.toFloat(), height.toFloat(), null, Canvas.ALL_SAVE_FLAG)
 
-        canvas?.drawRect(0F, 0F, width.toFloat(), height.toFloat(), paint)
+        canvas.drawRect(0F, 0F, width.toFloat(), height.toFloat(), paint)
 
         rect.apply {
             left = horizontalPadding
@@ -53,11 +53,9 @@ class CoverView: View {
             bottom = height.minus(verticalPadding)
 
             paint.color = Color.TRANSPARENT
-            canvas?.drawRect(this, paint)
+            canvas.drawRect(this, paint)
         }
 
-        if (layerId != null) {
-            canvas.restoreToCount(layerId)
-        }
+        canvas.restoreToCount(layerId)
     }
 }

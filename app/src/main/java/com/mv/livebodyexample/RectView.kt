@@ -90,55 +90,55 @@ class RectView : View {
         confidence = v
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         paint.style = Paint.Style.STROKE
         paint.color = color
 
         // left top
-        canvas?.drawLine(rect.left, rect.top + lineLength, rect.left, rect.top + radius, paint)
+        canvas.drawLine(rect.left, rect.top + lineLength, rect.left, rect.top + radius, paint)
         leftTopAcrRectF.apply {
             left = rect.left
             top = rect.top
             right = rect.left + radius * 2
             bottom = rect.top + radius * 2
-            canvas?.drawArc(this, 180F, 90F, false, paint)
+            canvas.drawArc(this, 180F, 90F, false, paint)
         }
-        canvas?.drawLine(rect.left + radius, rect.top, rect.left + lineLength, rect.top, paint)
+        canvas.drawLine(rect.left + radius, rect.top, rect.left + lineLength, rect.top, paint)
 
         // right top
-        canvas?.drawLine(rect.right - lineLength, rect.top, rect.right - radius, rect.top, paint)
+        canvas.drawLine(rect.right - lineLength, rect.top, rect.right - radius, rect.top, paint)
         rightTopAcrRectF.apply {
             left = rect.right - radius * 2
             top = rect.top
             right = rect.right
             bottom = rect.top + radius * 2
-            canvas?.drawArc(this, 270F, 90F, false, paint)
+            canvas.drawArc(this, 270F, 90F, false, paint)
         }
-        canvas?.drawLine(rect.right, rect.top + radius, rect.right, rect.top + lineLength, paint)
+        canvas.drawLine(rect.right, rect.top + radius, rect.right, rect.top + lineLength, paint)
 
         //left bottom
-        canvas?.drawLine(rect.left, rect.bottom - lineLength, rect.left, rect.bottom - radius, paint)
+        canvas.drawLine(rect.left, rect.bottom - lineLength, rect.left, rect.bottom - radius, paint)
         leftBottomAcrRectF.apply {
             left = rect.left
             top = rect.bottom - radius * 2
             right = rect.left + radius * 2
             bottom = rect.bottom
-            canvas?.drawArc(this, 180F, -90F, false, paint)
+            canvas.drawArc(this, 180F, -90F, false, paint)
         }
-        canvas?.drawLine(rect.left + radius, rect.bottom, rect.left + lineLength, rect.bottom, paint)
+        canvas.drawLine(rect.left + radius, rect.bottom, rect.left + lineLength, rect.bottom, paint)
 
         // right bottom
-        canvas?.drawLine(rect.right - lineLength, rect.bottom, rect.right - radius, rect.bottom, paint)
+        canvas.drawLine(rect.right - lineLength, rect.bottom, rect.right - radius, rect.bottom, paint)
         rightBottomAcrRectF.apply {
             left = rect.right - radius * 2
             top = rect.bottom - radius * 2
             right = rect.right
             bottom = rect.bottom
-            canvas?.drawArc(this, 90F, -90F, false, paint)
+            canvas.drawArc(this, 90F, -90F, false, paint)
         }
-        canvas?.drawLine(rect.right, rect.bottom - radius, rect.right, rect.bottom - lineLength, paint)
+        canvas.drawLine(rect.right, rect.bottom - radius, rect.right, rect.bottom - lineLength, paint)
 
         val text = decimalFormat.format(confidence)
 
@@ -150,7 +150,7 @@ class RectView : View {
 
             paint.style = Paint.Style.FILL
             paint.color = Color.BLACK
-            canvas?.drawRect(this, paint)
+            canvas.drawRect(this, paint)
         }
 
         textBoundsRect.apply {
@@ -160,7 +160,7 @@ class RectView : View {
             bottom = rect.top.toInt() - textPadding
 
             paint.color = color
-            canvas?.drawText(text, this.left.toFloat(), this.bottom.toFloat(), paint)
+            canvas.drawText(text, this.left.toFloat(), this.bottom.toFloat(), paint)
         }
 
     }
