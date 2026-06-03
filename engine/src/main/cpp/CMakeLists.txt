@@ -19,11 +19,13 @@ add_library(opencv_codecs STATIC IMPORTED)
 set_target_properties(opencv_codecs PROPERTIES IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libopencv_imgcodecs.so)
 
 
-file(GLOB jni_srcs
-        "*.cpp"
-        "detection/*.cpp"
-        "live/*.cpp"
-    )
+set(jni_srcs
+        face_detector_jni.cpp
+        img_process.cpp
+        live_jni.cpp
+        detection/face_detector.cpp
+        live/live.cpp
+)
 
 add_library(engine SHARED ${jni_srcs})
 

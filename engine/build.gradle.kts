@@ -14,13 +14,13 @@ android {
         consumerProguardFiles("consumer-rules.pro")
 
         ndk {
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+            abiFilters.addAll(listOf("arm64-v8a"))
         }
 
         externalNativeBuild {
             cmake {
-                cppFlags("-std=c++11", "-frtti", "-fexceptions")
-                abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+                cppFlags("-std=c++17", "-frtti", "-fexceptions", "-O3", "-ffast-math", "-march=armv8-a+simd")
+                abiFilters.addAll(listOf("arm64-v8a"))
                 arguments("-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang")
             }
         }
