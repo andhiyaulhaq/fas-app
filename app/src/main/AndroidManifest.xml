@@ -11,16 +11,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".WelcomeActivity"
             android:theme="@style/NoActionBarTheme"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name=".PassiveLivenessActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+            
+        <activity android:name=".BlinkTestActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+            
+        <activity android:name=".SmileTestActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+            
+        <activity android:name=".HeadTurnTestActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -33,7 +33,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
-class MainActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDialogListener {
+class PassiveLivenessActivity : AppCompatActivity(), SetThresholdDialogFragment.ThresholdDialogListener {
 
     private lateinit var binding: ActivityMainBinding
 
