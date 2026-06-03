@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mini-FAS</string>
+
+    <string name="real_face">Real Face</string>
+    <string name="fake_face">Fake Face</string>
+    <string name="set_threshold_dialog_title">Set Threshold</string>
+    <string name="set_threshold_dialog_text_hint">Range 0-1, recommended 0.915</string>
+    <string name="set_threshold_dialog_confirm">OK</string>
+    <string name="set_threshold_dialog_hint">Please enter threshold</string>
+</resources>
