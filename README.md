@@ -1,6 +1,6 @@
 This project is the Android deployment code for [Minivision Technology](https://www.minivision.cn/)'s silent liveness detection algorithm.
 
-<img src="https://raw.githubusercontent.com/andhiyaulhaq/fas-app/main/docs/fas_small.gif" width="225" height="500"/>
+<img src="docs/fas_small.gif" width="225" height="500"/>
 
 ## Documentation
 For detailed information, please refer to:
