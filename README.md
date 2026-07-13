@@ -1,6 +1,6 @@
 This project is the Android deployment code for [Minivision Technology](https://www.minivision.cn/)'s silent liveness detection algorithm.
 
-<img src="https://github.com/minivision-ai/Silent-Face-Anti-Spoofing/blob/master/images/demo.gif" width="300" height="400"/>
+<img src="docs/fas.gif" width="225" height="500"/>
 
 ## Documentation
 For detailed information, please refer to:
